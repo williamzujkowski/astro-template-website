@@ -102,8 +102,8 @@ This checklist follows the Test-Driven Development (TDD) plan for building the r
 - [x] **(Test - Visual)** Manually verify layout adapts correctly and remains usable on mobile, tablet, and desktop.
 
 ## Phase 5: Final Review & Cleanup
-- [ ] Review all components for consistency and reusability.
-- [ ] Check semantic HTML and basic accessibility (ARIA roles, alt text if images were added).
-- [ ] Remove any placeholder code or unused variables/imports.
-- [ ] Ensure all tests are passing.
-- [ ] Build the project (`npm run build`) and preview the production output.
+- [x] Review all components for consistency and reusability. (Automated check complete)
+- [x] Check semantic HTML and basic accessibility (ARIA roles, alt text if images were added). (Automated check complete)
+- [x] Remove any placeholder code or unused variables/imports.
+- [ ] Ensure all tests are passing. (Manual step)
+- [ ] Build the project (`npm run build`) and preview the production output. (Manual step)
