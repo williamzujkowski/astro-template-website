@@ -10,6 +10,7 @@ import { navItems } from '../data/navItems'; // Import navItems from data file
 
 const { title } = Astro.props;
 const siteTitle = "My Astro Site"; // Define the site title
+const currentPath = Astro.url.pathname; // Get current path
 
 // navItems are now imported from src/data/navItems.ts
 ---
