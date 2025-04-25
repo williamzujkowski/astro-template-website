@@ -27,7 +27,7 @@ const siteTitle = "My Astro Site"; // Define the site title
 		</style>
 	</head>
 	<body>
-		<Header siteTitle={siteTitle} navItems={navItems} />
+		<Header siteTitle={siteTitle} navItems={navItems} currentPath={currentPath} />
 		<main>
 			<slot />
 		</main>

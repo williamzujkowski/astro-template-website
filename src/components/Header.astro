@@ -8,9 +8,10 @@ interface NavItem {
 interface Props {
 	siteTitle: string;
   navItems: NavItem[];
+  currentPath: string; // Add prop for current path
 }
 
-const { siteTitle, navItems } = Astro.props;
+const { siteTitle, navItems, currentPath } = Astro.props;
 ---
 <header role="banner" class="site-header">
   <div class="site-title">
@@ -20,7 +21,13 @@ const { siteTitle, navItems } = Astro.props;
     <ul class="nav-list">
       {navItems.map((item) => (
         <li class="nav-item">
-          <a href={item.href} class="nav-link">{item.text}</a>
+          <a
+            href={item.href}
+            class:list={["nav-link", { active: item.href === currentPath }]}
+            aria-current={item.href === currentPath ? "page" : false}
+          >
+            {item.text}
+          </a>
         </li>
       ))}
     </ul>
@@ -64,11 +71,15 @@ const { siteTitle, navItems } = Astro.props;
   transition: background-color 0.2s ease, color 0.2s ease;
 }
 
+/* Style for active link using class and/or attribute */
 .nav-link:hover,
-.nav-link[aria-current="page"] { /* Example for active link styling */
+.nav-link.active, /* Style based on class */
+.nav-link[aria-current="page"] { /* Style based on ARIA attribute */
   color: var(--color-primary);
   background-color: rgba(0, 123, 255, 0.1); /* Light primary background */
+  font-weight: 500; /* Slightly bolder */
 }
+
 
 /* Basic Responsiveness for Header */
 @media (max-width: 768px) {
