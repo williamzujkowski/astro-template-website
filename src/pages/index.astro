@@ -4,25 +4,9 @@ import Layout from '../layouts/Layout.astro';
 import Hero from '../components/Hero.astro';
 import Features from '../components/Features.astro';
 import CTASection from '../components/CTASection.astro'; // Import CTASection
+import { featuresData } from '../data/featuresData'; // Import featuresData
 
-// Sample Features Data
-const featuresData = [
-  {
-    title: "Fast by Default",
-    description: "Astro renders your UI to HTML at build time. No JavaScript runtime.",
-    icon: "🚀" // Example using emoji as icon
-  },
-  {
-    title: "Component Islands",
-    description: "Need interactive UI? Load individual components on demand.",
-    icon: "🏝️"
-  },
-  {
-    title: "Framework Agnostic",
-    description: "Use your favorite UI components from React, Preact, Svelte, Vue, Solid, Lit and more.",
-    icon: "⚙️"
-  }
-];
+// featuresData is now imported from src/data/featuresData.ts
 ---
 
 <Layout title="Welcome to My Astro Site">
