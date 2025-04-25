@@ -7,10 +7,6 @@ interface Props {
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro'; // Import Footer
 
-interface Props {
-	title: string;
-}
-
 const { title } = Astro.props;
 const siteTitle = "My Astro Site"; // Define the site title
 
@@ -36,6 +32,6 @@ const navItems = [
 		<main>
 			<slot />
 		</main>
-		<Footer />
+		<Footer startYear={2023} /> {/* Pass startYear */}
 	</body>
 </html>
