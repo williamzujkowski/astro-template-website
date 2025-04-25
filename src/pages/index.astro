@@ -2,7 +2,8 @@
 // src/pages/index.astro
 import Layout from '../layouts/Layout.astro';
 import Hero from '../components/Hero.astro';
-import Features from '../components/Features.astro'; // Import Features
+import Features from '../components/Features.astro';
+import CTASection from '../components/CTASection.astro'; // Import CTASection
 
 // Sample Features Data
 const featuresData = [
@@ -32,5 +33,10 @@ const featuresData = [
 		ctaHref="/docs"
 	/>
 	<Features features={featuresData} />
+	<CTASection
+		headline="Ready to Get Started?"
+		ctaText="Explore the Docs"
+		ctaHref="/docs"
+	/>
 	{/* Other page content will go here */}
 </Layout>
