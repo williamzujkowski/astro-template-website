@@ -25,42 +25,65 @@ const { features } = Astro.props;
 </section>
 
 <style>
-/* Basic styling for demonstration */
+/* Refined styling using variables */
 .features-section {
-  padding: 3rem 1rem;
+  padding: var(--spacing-xxl) var(--spacing-md);
+  background-color: var(--color-background); /* Ensure background contrast if needed */
 }
 
 .features-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Responsive grid */
-  gap: 1.5rem;
+  /* Adjust minmax for better control on smaller/larger screens if needed */
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--spacing-lg);
   max-width: 1200px;
   margin: 0 auto;
 }
 
 .feature-card {
-  border: 1px solid #e0e0e0;
-  border-radius: 8px;
-  padding: 1.5rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius);
+  padding: var(--spacing-lg);
   text-align: center;
-  background-color: #fff;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  background-color: var(--color-surface); /* Use surface color for cards */
+  box-shadow: 0 2px 5px rgba(0,0,0,0.08);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.12);
 }
 
 .feature-card h3 {
-  margin-top: 0.5rem;
-  margin-bottom: 0.5rem;
-  font-size: 1.25rem;
+  margin-top: var(--spacing-sm);
+  margin-bottom: var(--spacing-sm);
+  font-size: 1.3rem;
+  color: var(--color-text);
 }
 
 .feature-card p {
-  font-size: 0.95rem;
-  color: #555;
+  font-size: 1rem;
+  color: var(--color-text-muted);
+  line-height: 1.6;
 }
 
 .feature-icon {
-  font-size: 2rem; /* Example size, adjust as needed */
-  margin-bottom: 1rem;
-  color: #007bff; /* Example color */
+  font-size: 2.5rem;
+  margin-bottom: var(--spacing-md);
+  color: var(--color-primary);
+}
+
+/* Responsive adjustments for Features */
+@media (max-width: 768px) {
+  .features-section {
+    padding: var(--spacing-xl) var(--spacing-md);
+  }
+  .features-grid {
+    gap: var(--spacing-md);
+  }
+  .feature-card {
+     padding: var(--spacing-md);
+  }
 }
 </style>
