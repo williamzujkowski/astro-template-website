@@ -1,8 +1,15 @@
 ---
 // src/components/Header.astro
+interface Props {
+	siteTitle: string;
+}
+
+const { siteTitle } = Astro.props;
 ---
-<header role="banner">
-  <div>Site Title/Logo Placeholder</div>
+<header role="banner" class="site-header">
+  <div class="site-title">
+    <a href="/">{siteTitle}</a>
+  </div>
   <nav role="navigation">
     <!-- Navigation links will go here -->
   </nav>
