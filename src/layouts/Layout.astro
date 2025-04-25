@@ -26,6 +26,9 @@ const navItems = [
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
+		<style is:global>
+			@import '../styles/global.css';
+		</style>
 	</head>
 	<body>
 		<Header siteTitle={siteTitle} navItems={navItems} />
