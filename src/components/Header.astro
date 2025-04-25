@@ -1,16 +1,28 @@
 ---
 // src/components/Header.astro
-interface Props {
-	siteTitle: string;
+interface NavItem {
+  text: string;
+  href: string;
 }
 
-const { siteTitle } = Astro.props;
+interface Props {
+	siteTitle: string;
+  navItems: NavItem[];
+}
+
+const { siteTitle, navItems } = Astro.props;
 ---
 <header role="banner" class="site-header">
   <div class="site-title">
     <a href="/">{siteTitle}</a>
   </div>
-  <nav role="navigation">
-    <!-- Navigation links will go here -->
+  <nav role="navigation" aria-label="Main navigation">
+    <ul class="nav-list">
+      {navItems.map((item) => (
+        <li class="nav-item">
+          <a href={item.href} class="nav-link">{item.text}</a>
+        </li>
+      ))}
+    </ul>
   </nav>
 </header>
