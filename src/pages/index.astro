@@ -1,7 +1,27 @@
 ---
 // src/pages/index.astro
 import Layout from '../layouts/Layout.astro';
-import Hero from '../components/Hero.astro'; // Import Hero
+import Hero from '../components/Hero.astro';
+import Features from '../components/Features.astro'; // Import Features
+
+// Sample Features Data
+const featuresData = [
+  {
+    title: "Fast by Default",
+    description: "Astro renders your UI to HTML at build time. No JavaScript runtime.",
+    icon: "🚀" // Example using emoji as icon
+  },
+  {
+    title: "Component Islands",
+    description: "Need interactive UI? Load individual components on demand.",
+    icon: "🏝️"
+  },
+  {
+    title: "Framework Agnostic",
+    description: "Use your favorite UI components from React, Preact, Svelte, Vue, Solid, Lit and more.",
+    icon: "⚙️"
+  }
+];
 ---
 
 <Layout title="Welcome to My Astro Site">
@@ -11,5 +31,6 @@ import Hero from '../components/Hero.astro'; // Import Hero
 		ctaText="Get Started"
 		ctaHref="/docs"
 	/>
+	<Features features={featuresData} />
 	{/* Other page content will go here */}
 </Layout>
