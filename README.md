@@ -1,6 +1,8 @@
-# .github Template Repository
+# Astro Template Website
 
-A standardized, comprehensive, and best-practice set of GitHub repository configuration files and workflows to accelerate new project setup.
+[![Use this template](https://img.shields.io/badge/template-use%20this%20template-blue?logo=github)](https://github.com/williamzujkowski/astro-template-website/generate)
+
+A ready-to-use Astro website template featuring essential pages, components, styling, testing, and GitHub Actions deployment to GitHub Pages.
 
 ## What This Template Provides
 
