@@ -3,9 +3,11 @@
 import Layout from '../layouts/Layout.astro';
 import Hero from '../components/Hero.astro';
 import Features from '../components/Features.astro';
-import AboutSection from '../components/AboutSection.astro'; // Import AboutSection
+import AboutSection from '../components/AboutSection.astro';
+import Testimonials from '../components/Testimonials.astro'; // Import Testimonials
 import CTASection from '../components/CTASection.astro';
 import { featuresData } from '../data/featuresData';
+import { testimonialsData } from '../data/testimonialsData'; // Import testimonialsData
 
 // Sample data for AboutSection
 const aboutContent = `
@@ -30,6 +32,7 @@ const aboutContent = `
 		imageUrl="/placeholder-image.jpg" /* Optional: Add a real image path later */
 		imageAlt="Abstract placeholder image"
 	/>
+	<Testimonials testimonials={testimonialsData} /> {/* Add Testimonials section */}
 	<CTASection
 		headline="Ready to Get Started?"
 		ctaText="Explore the Docs"
