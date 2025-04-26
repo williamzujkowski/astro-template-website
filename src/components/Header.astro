@@ -1,13 +1,10 @@
 ---
 // src/components/Header.astro
-interface NavItem {
-  text: string;
-  href: string;
-}
+import type { NavItem } from '../data/navItems'; // Import the NavItem type
 
 interface Props {
 	siteTitle: string;
-  navItems: NavItem[];
+  navItems: NavItem[]; // Use the imported NavItem type
   currentPath: string; // Add prop for current path
 }
 
