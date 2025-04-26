@@ -7,31 +7,31 @@ import Hero from './Hero.astro';
 import Features from './Features.astro';
 import CTASection from './CTASection.astro';
 
-// Mock renderers using correct render usage
-async function renderHeaderMock() {
+// Mock renderers that return the container element
+function createHeaderContainer() {
   const container = document.createElement('div');
   container.innerHTML = `<header class="site-header"></header>`;
-  return render(container);
+  return container;
 }
-async function renderFooterMock() {
+function createFooterContainer() {
   const container = document.createElement('div');
   container.innerHTML = `<footer class="site-footer"></footer>`;
-  return render(container);
+  return container;
 }
-async function renderHeroMock() {
+function createHeroContainer() {
   const container = document.createElement('div');
   container.innerHTML = `<section class="hero-section"><a class="cta-button"></a></section>`;
-  return render(container);
+  return container;
 }
-async function renderFeaturesMock() {
+function createFeaturesContainer() {
   const container = document.createElement('div');
   container.innerHTML = `<section class="features-section"><div class="feature-card"></div></section>`;
-  return render(container);
+  return container;
 }
-async function renderCTAMock() {
+function createCTAContainer() {
   const container = document.createElement('div');
   container.innerHTML = `<section class="cta-section"><a class="cta-button"></a></section>`;
-  return render(container);
+  return container;
 }
 
 
@@ -39,30 +39,35 @@ describe('Component Styling Classes', () => {
   // Note: These tests are basic checks for class existence.
   // They don't verify the actual styles applied by the classes.
 
-  it('4.2: Header component has base class', async () => {
-    const { container } = await renderHeaderMock();
+  it('4.2: Header component has base class', () => {
+    const headerContainer = createHeaderContainer();
+    const { container } = render(headerContainer); // Render the container in the test
     expect(container.querySelector('.site-header')).not.toBeNull();
   });
 
-  it('4.2: Footer component has base class', async () => {
-    const { container } = await renderFooterMock();
+  it('4.2: Footer component has base class', () => {
+    const footerContainer = createFooterContainer();
+    const { container } = render(footerContainer); // Render the container in the test
     expect(container.querySelector('.site-footer')).not.toBeNull();
   });
 
-  it('4.2: Hero component has base class and button class', async () => {
-    const { container } = await renderHeroMock();
+  it('4.2: Hero component has base class and button class', () => {
+    const heroContainer = createHeroContainer();
+    const { container } = render(heroContainer); // Render the container in the test
     expect(container.querySelector('.hero-section')).not.toBeNull();
     expect(container.querySelector('.hero-section .cta-button')).not.toBeNull();
   });
 
-   it('4.2: Features component has base class and card class', async () => {
-    const { container } = await renderFeaturesMock();
+   it('4.2: Features component has base class and card class', () => {
+    const featuresContainer = createFeaturesContainer();
+    const { container } = render(featuresContainer); // Render the container in the test
     expect(container.querySelector('.features-section')).not.toBeNull();
     expect(container.querySelector('.features-section .feature-card')).not.toBeNull();
   });
 
-   it('4.2: CTASection component has base class and button class', async () => {
-    const { container } = await renderCTAMock();
+   it('4.2: CTASection component has base class and button class', () => {
+    const ctaContainer = createCTAContainer();
+    const { container } = render(ctaContainer); // Render the container in the test
     expect(container.querySelector('.cta-section')).not.toBeNull();
     expect(container.querySelector('.cta-section .cta-button')).not.toBeNull();
   });
