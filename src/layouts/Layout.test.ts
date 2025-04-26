@@ -68,11 +68,14 @@ describe('Layout.astro', () => {
       // No need to call render, query layoutElement directly
       // debug(layoutElement); // Uncomment to see the element's structure
 
-      // layoutElement is the root div containing the mocked HTML
+      // layoutElement is the root div. The html element should be its first child.
       console.log('[Test] Asserting HTML structure...');
-      expect(layoutElement.querySelector('html'), 'HTML tag should exist').not.toBeNull();
-      expect(layoutElement.querySelector('head'), 'HEAD tag should exist').not.toBeNull();
-      expect(layoutElement.querySelector('body'), 'BODY tag should exist').not.toBeNull();
+      const htmlElement = layoutElement.firstElementChild;
+      expect(htmlElement, 'Container div should have a child element').not.toBeNull();
+      expect(htmlElement?.tagName, 'First child element should be HTML').toBe('HTML');
+      // Now query within the htmlElement for head and body
+      expect(htmlElement?.querySelector('head'), 'HEAD tag should exist within HTML element').not.toBeNull();
+      expect(htmlElement?.querySelector('body'), 'BODY tag should exist within HTML element').not.toBeNull();
       console.log('[Test] Assertions passed.');
     } catch (error) {
       console.error('[Test] Error during basic structure test:', error);
