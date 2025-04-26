@@ -142,6 +142,22 @@
 
 ---
 
+**Phase 5: Additional Content Sections**
+
+* **[x] Step 5.1: Create Testimonials Section Component**
+    * **(Red) Test:** Write a test asserting that a `Testimonials.astro` component:
+        * Renders a `<section>` element.
+        * Accepts an array prop `testimonials` (e.g., `[{ quote: 'Great product!', author: 'Satisfied Customer', source?: 'Company XYZ' }]`).
+        * Renders a distinct block/card for each testimonial, displaying its `quote` and `author`.
+        * (Optional) Renders the `source` if provided.
+    * **(Green) Code:** Create `src/components/Testimonials.astro`. Implement the structure, accept the `testimonials` prop, and use `map` to render each testimonial item. Use `<blockquote>`, `<p>`, and `<cite>` or similar semantic elements.
+    * **(Refactor) Code:** Add styling classes for the section layout (e.g., grid or slider) and individual testimonial cards. Consider visual treatments for quotes. Move CSS variables to `global.css`.
+    * **Integration:** Import and use the `Testimonials` component in `src/pages/index.astro` (likely before the CTA section), passing a sample array of testimonials from `src/data/testimonialsData.ts`.
+    * **(Green) Test:** Run tests. Verify the Testimonials section renders correctly with multiple testimonial items.
+    * **Rationale:** Build social proof by showcasing positive feedback.
+
+---
+
 **Next Steps & Considerations:**
 
 * **Adding More Sections:** Follow the pattern (Red-Test -> Green-Code -> Refactor -> Integrate -> Green-Test) for any additional sections (e.g., Testimonials, About Section, Contact Form stub).
