@@ -1,12 +1,21 @@
 ---
 // src/pages/index.astro
+---
+// src/pages/index.astro
 import Layout from '../layouts/Layout.astro';
 import Hero from '../components/Hero.astro';
 import Features from '../components/Features.astro';
-import CTASection from '../components/CTASection.astro'; // Import CTASection
-import { featuresData } from '../data/featuresData'; // Import featuresData
+import AboutSection from '../components/AboutSection.astro'; // Import AboutSection
+import CTASection from '../components/CTASection.astro';
+import { featuresData } from '../data/featuresData';
 
-// featuresData is now imported from src/data/featuresData.ts
+// Sample data for AboutSection
+const aboutContent = `
+  We are passionate about building modern web experiences.
+  Using Astro allows us to create performant, content-focused websites
+  with an excellent developer experience. This starter template provides
+  a solid foundation for your next project.
+`;
 ---
 
 <Layout title="Welcome to My Astro Site">
@@ -17,6 +26,12 @@ import { featuresData } from '../data/featuresData'; // Import featuresData
 		ctaHref="/docs"
 	/>
 	<Features features={featuresData} />
+	<AboutSection
+		headline="About This Project"
+		content={aboutContent}
+		imageUrl="/placeholder-image.jpg" /* Optional: Add a real image path later */
+		imageAlt="Abstract placeholder image"
+	/>
 	<CTASection
 		headline="Ready to Get Started?"
 		ctaText="Explore the Docs"
