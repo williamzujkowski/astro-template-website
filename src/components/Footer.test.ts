@@ -15,7 +15,9 @@ async function renderFooter(props: { startYear?: number }) {
       <p>&copy; ${yearDisplay} My Astro Site. All rights reserved.</p>
     </footer>
   `;
-  return render(html);
+  const container = document.createElement('div');
+  container.innerHTML = html;
+  return render(container); // Pass the container element to render
 }
 
 describe('Footer.astro', () => {

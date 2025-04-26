@@ -7,12 +7,32 @@ import Hero from './Hero.astro';
 import Features from './Features.astro';
 import CTASection from './CTASection.astro';
 
-// Mock renderers (simplified, reuse/adapt from other test files)
-async function renderHeaderMock() { render(`<header class="site-header"></header>`); }
-async function renderFooterMock() { render(`<footer class="site-footer"></footer>`); }
-async function renderHeroMock() { render(`<section class="hero-section"><a class="cta-button"></a></section>`); }
-async function renderFeaturesMock() { render(`<section class="features-section"><div class="feature-card"></div></section>`); }
-async function renderCTAMock() { render(`<section class="cta-section"><a class="cta-button"></a></section>`); }
+// Mock renderers using correct render usage
+async function renderHeaderMock() {
+  const container = document.createElement('div');
+  container.innerHTML = `<header class="site-header"></header>`;
+  return render(container);
+}
+async function renderFooterMock() {
+  const container = document.createElement('div');
+  container.innerHTML = `<footer class="site-footer"></footer>`;
+  return render(container);
+}
+async function renderHeroMock() {
+  const container = document.createElement('div');
+  container.innerHTML = `<section class="hero-section"><a class="cta-button"></a></section>`;
+  return render(container);
+}
+async function renderFeaturesMock() {
+  const container = document.createElement('div');
+  container.innerHTML = `<section class="features-section"><div class="feature-card"></div></section>`;
+  return render(container);
+}
+async function renderCTAMock() {
+  const container = document.createElement('div');
+  container.innerHTML = `<section class="cta-section"><a class="cta-button"></a></section>`;
+  return render(container);
+}
 
 
 describe('Component Styling Classes', () => {
@@ -20,31 +40,31 @@ describe('Component Styling Classes', () => {
   // They don't verify the actual styles applied by the classes.
 
   it('4.2: Header component has base class', async () => {
-    await renderHeaderMock(); // Use a simplified render focusing on the root element + class
-    expect(document.querySelector('.site-header')).not.toBeNull();
+    const { container } = await renderHeaderMock();
+    expect(container.querySelector('.site-header')).not.toBeNull();
   });
 
   it('4.2: Footer component has base class', async () => {
-    await renderFooterMock();
-    expect(document.querySelector('.site-footer')).not.toBeNull();
+    const { container } = await renderFooterMock();
+    expect(container.querySelector('.site-footer')).not.toBeNull();
   });
 
   it('4.2: Hero component has base class and button class', async () => {
-    await renderHeroMock();
-    expect(document.querySelector('.hero-section')).not.toBeNull();
-    expect(document.querySelector('.hero-section .cta-button')).not.toBeNull();
+    const { container } = await renderHeroMock();
+    expect(container.querySelector('.hero-section')).not.toBeNull();
+    expect(container.querySelector('.hero-section .cta-button')).not.toBeNull();
   });
 
    it('4.2: Features component has base class and card class', async () => {
-    await renderFeaturesMock();
-    expect(document.querySelector('.features-section')).not.toBeNull();
-    expect(document.querySelector('.features-section .feature-card')).not.toBeNull();
+    const { container } = await renderFeaturesMock();
+    expect(container.querySelector('.features-section')).not.toBeNull();
+    expect(container.querySelector('.features-section .feature-card')).not.toBeNull();
   });
 
    it('4.2: CTASection component has base class and button class', async () => {
-    await renderCTAMock();
-    expect(document.querySelector('.cta-section')).not.toBeNull();
-    expect(document.querySelector('.cta-section .cta-button')).not.toBeNull();
+    const { container } = await renderCTAMock();
+    expect(container.querySelector('.cta-section')).not.toBeNull();
+    expect(container.querySelector('.cta-section .cta-button')).not.toBeNull();
   });
 
   // Add more tests here if specific classes are critical for functionality or styling hooks

@@ -20,7 +20,9 @@ async function renderFeatures(props: { features: FeatureItem[] }) {
       </div>
     </section>
   `;
-  return render(html);
+  const container = document.createElement('div');
+  container.innerHTML = html;
+  return render(container); // Pass the container element to render
 }
 
 describe('Features.astro', () => {

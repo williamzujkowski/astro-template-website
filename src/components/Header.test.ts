@@ -26,7 +26,9 @@ async function renderHeader(props: { siteTitle: string; navItems: NavItem[]; cur
       </nav>
     </header>
   `;
-  return render(html);
+  const container = document.createElement('div');
+  container.innerHTML = html;
+  return render(container); // Pass the container element to render
 }
 
 describe('Header.astro', () => {

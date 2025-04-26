@@ -12,7 +12,9 @@ async function renderCTASection(props: { headline: string; ctaText: string; ctaH
       </div>
     </section>
   `;
-  return render(html);
+  const container = document.createElement('div');
+  container.innerHTML = html;
+  return render(container); // Pass the container element to render
 }
 
 describe('CTASection.astro', () => {

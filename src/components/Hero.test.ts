@@ -14,7 +14,9 @@ async function renderHero(props: { headline: string; subheadline?: string; ctaTe
       </div>
     </section>
   `;
-  return render(html);
+  const container = document.createElement('div');
+  container.innerHTML = html;
+  return render(container); // Pass the container element to render
 }
 
 describe('Hero.astro', () => {
