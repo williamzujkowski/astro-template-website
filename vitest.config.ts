@@ -9,5 +9,9 @@ export default getViteConfig({
     globals: true, // Use Vitest globals (describe, it, expect)
     // Optional: Setup file for global configurations or mocks
     // setupFiles: ['./tests/setup.ts'],
+    // Explicitly inline testing-library dependencies to avoid import issues
+    deps: {
+      inline: [/@testing-library\//],
+    },
   },
 });
