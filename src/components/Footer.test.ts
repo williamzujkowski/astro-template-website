@@ -15,7 +15,8 @@ describe('Footer.astro', () => {
 
     const footer = container.querySelector('footer[role="contentinfo"]'); // Query the container
     expect(footer).not.toBeNull();
-    expect(footer.textContent).toContain('© Test');
+    // Check for the HTML entity, as textContent doesn't decode it
+    expect(footer.textContent).toContain('&copy; Test');
     // expect(footer.textContent).toContain('My Astro Site'); // Temporarily commented out
   });
 
