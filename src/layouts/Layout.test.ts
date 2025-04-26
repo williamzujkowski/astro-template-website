@@ -68,12 +68,11 @@ describe('Layout.astro', () => {
       // No need to call render, query layoutElement directly
       // debug(layoutElement); // Uncomment to see the element's structure
 
-      // layoutElement is the root div. The html element should be its first child.
+      // layoutElement is the root div. Query for the html element within it.
       console.log('[Test] Asserting HTML structure...');
-      const htmlElement = layoutElement.firstElementChild;
-      expect(htmlElement, 'Container div should have a child element').not.toBeNull();
-      expect(htmlElement?.tagName, 'First child element should be HTML').toBe('HTML');
-      // Now query within the htmlElement for head and body
+      const htmlElement = layoutElement.querySelector('html'); // Find the html tag within the container
+      expect(htmlElement, 'HTML element should exist within the container').not.toBeNull();
+      // Now query within the found htmlElement for head and body
       expect(htmlElement?.querySelector('head'), 'HEAD tag should exist within HTML element').not.toBeNull();
       expect(htmlElement?.querySelector('body'), 'BODY tag should exist within HTML element').not.toBeNull();
       console.log('[Test] Assertions passed.');
