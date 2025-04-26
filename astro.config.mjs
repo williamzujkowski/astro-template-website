@@ -30,8 +30,8 @@ console.log(`Astro Config: Using site='${site}' and base='${base}'`);
 
 // https://astro.build/config
 export default defineConfig({
-  site: site,
-  base: base,
+  site: site, // Dynamically set based on environment
+  base: base, // Dynamically set based on environment (e.g., '/astro-template-website/')
   // Ensure the output directory is 'dist' as expected by the GitHub Pages actions
   outDir: 'dist',
 });
