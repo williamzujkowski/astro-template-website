@@ -132,7 +132,7 @@
     * **(Green) Test:** Run tests. Check visual appearance in the browser.
     * **Rationale:** Encapsulate styles with their components for maintainability.
 
-* **Step 4.3: Implement Basic Responsiveness**
+* **[x] Step 4.3: Implement Basic Responsiveness**
     * **(Red) Test:** Conceptually, tests could check for the *existence* of elements specific to mobile (like a hamburger menu button, even if hidden) or the application of responsive utility classes if using a framework. Direct visual testing is more practical here.
     * **(Green) Code:** Add CSS media queries within `global.css` or component `<style>` tags to adjust layout, font sizes, visibility, etc., for different screen sizes (e.g., stack navigation links vertically on small screens, adjust grid columns in Features section).
     * **(Refactor) Code:** Test thoroughly across different viewport widths using browser developer tools. Ensure usability and readability on mobile, tablet, and desktop.
