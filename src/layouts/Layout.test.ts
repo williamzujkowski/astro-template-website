@@ -1,6 +1,5 @@
 import { describe, it, expect } from 'vitest';
-// Try importing directly from the dist path
-import { render, debug } from '@testing-library/dom/dist';
+// Removed testing-library/dom import as we'll query the element directly
 import Layout from './Layout.astro'; // Assuming direct import works, might need adjustments based on setup
 
 // Helper to render Astro components in tests (basic example) with logging and error handling
@@ -65,16 +64,15 @@ describe('Layout.astro', () => {
     console.log('\n--- Test: Renders basic HTML structure ---');
     try {
       const layoutElement = await renderAstroComponent(Layout, { title: 'Test Title' });
-      console.log('[Test] Mock element created, attempting to render with Testing Library...');
-      const { container } = render(layoutElement); // Render the element in the test
-      console.log('[Test] Render successful. Container obtained.');
-      // debug(container); // Uncomment to see the rendered DOM in the console
+      console.log('[Test] Mock element created. Querying directly...');
+      // No need to call render, query layoutElement directly
+      // debug(layoutElement); // Uncomment to see the element's structure
 
-      // container is the root element rendered into
+      // layoutElement is the root div containing the mocked HTML
       console.log('[Test] Asserting HTML structure...');
-      expect(container.querySelector('html'), 'HTML tag should exist').not.toBeNull();
-      expect(container.querySelector('head'), 'HEAD tag should exist').not.toBeNull();
-      expect(container.querySelector('body'), 'BODY tag should exist').not.toBeNull();
+      expect(layoutElement.querySelector('html'), 'HTML tag should exist').not.toBeNull();
+      expect(layoutElement.querySelector('head'), 'HEAD tag should exist').not.toBeNull();
+      expect(layoutElement.querySelector('body'), 'BODY tag should exist').not.toBeNull();
       console.log('[Test] Assertions passed.');
     } catch (error) {
       console.error('[Test] Error during basic structure test:', error);
@@ -87,12 +85,11 @@ describe('Layout.astro', () => {
     const slotText = 'This is slotted content';
     try {
       const layoutElement = await renderAstroComponent(Layout, { title: 'Test Title' }, { default: `<p>${slotText}</p>` });
-      console.log('[Test] Mock element with slot created, attempting to render...');
-      const { container } = render(layoutElement); // Render the element in the test
-      console.log('[Test] Render successful. Container obtained.');
-      // debug(container); // Uncomment to see the rendered DOM
+      console.log('[Test] Mock element with slot created. Querying directly...');
+      // No need to call render, query layoutElement directly
+      // debug(layoutElement); // Uncomment to see the element's structure
 
-      const mainElement = container.querySelector('main'); // Query within the rendered container
+      const mainElement = layoutElement.querySelector('main'); // Query within the layoutElement
       console.log('[Test] Asserting slot content...');
       expect(mainElement, 'Main element should exist').not.toBeNull();
       expect(mainElement?.innerHTML, `Main element should contain "${slotText}"`).toContain(`<p>${slotText}</p>`);
@@ -108,12 +105,11 @@ describe('Layout.astro', () => {
     const testTitle = 'My Test Page Title';
     try {
       const layoutElement = await renderAstroComponent(Layout, { title: testTitle });
-      console.log('[Test] Mock element with title created, attempting to render...');
-      const { container } = render(layoutElement); // Render the element in the test
-      console.log('[Test] Render successful. Container obtained.');
-      // debug(container); // Uncomment to see the rendered DOM
+      console.log('[Test] Mock element with title created. Querying directly...');
+      // No need to call render, query layoutElement directly
+      // debug(layoutElement); // Uncomment to see the element's structure
 
-      const titleElement = container.querySelector('title'); // Query within the rendered container
+      const titleElement = layoutElement.querySelector('title'); // Query within the layoutElement
       console.log('[Test] Asserting title content...');
       expect(titleElement, 'Title element should exist').not.toBeNull();
       expect(titleElement?.textContent, `Title should be "${testTitle}"`).toBe(testTitle);
