@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { render, screen } from '@testing-library/dom';
+import { render, screen } from '@testing-library/dom'; // Ensure render is imported
 // Import components to test class presence (using mock renderers from other tests)
 import Header from './Header.astro';
 import Footer from './Footer.astro';

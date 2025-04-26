@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { render, screen } from '@testing-library/dom';
+import { render, screen } from '@testing-library/dom'; // Ensure render is imported
 import Footer from './Footer.astro'; // Direct import might need adjustment
 
 // Mock render helper

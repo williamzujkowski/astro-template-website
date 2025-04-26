@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { render, screen, within } from '@testing-library/dom';
+import { render, screen, within } from '@testing-library/dom'; // Ensure render is imported
 import Features from './Features.astro'; // Direct import might need adjustment
 import type { FeatureItem } from '../data/featuresData'; // Import type
 

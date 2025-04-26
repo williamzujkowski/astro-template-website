@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { render } from '@testing-library/dom';
+import { render } from '@testing-library/dom'; // Ensure render is imported
 import Layout from './Layout.astro'; // Assuming direct import works, might need adjustments based on setup
 
 // Helper to render Astro components in tests (basic example)

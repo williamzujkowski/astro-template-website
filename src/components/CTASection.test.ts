@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { render, screen, within } from '@testing-library/dom';
+import { render, screen, within } from '@testing-library/dom'; // Ensure render is imported
 import CTASection from './CTASection.astro'; // Direct import might need adjustment
 
 // Mock render helper
