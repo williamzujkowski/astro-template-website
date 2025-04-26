@@ -39,15 +39,15 @@ async function renderAstroComponent(component: any, props: Record<string, any>, 
 
   const container = document.createElement('div');
   container.innerHTML = html;
-  // Return the container element directly
+  // Return the container element directly, not the result of render()
   return container;
 }
 
 
 describe('Layout.astro', () => {
   it('1.2: Renders basic HTML structure (html, head, body)', async () => {
-    const layoutContainer = await renderAstroComponent(Layout, { title: 'Test Title' });
-    const { container } = render(layoutContainer); // Render the container in the test
+    const layoutElement = await renderAstroComponent(Layout, { title: 'Test Title' });
+    const { container } = render(layoutElement); // Render the element in the test
     // container is the root element rendered into
     expect(container.querySelector('html')).not.toBeNull();
     expect(container.querySelector('head')).not.toBeNull();
@@ -56,8 +56,8 @@ describe('Layout.astro', () => {
 
   it('1.2: Renders content via <slot />', async () => {
     const slotText = 'This is slotted content';
-    const layoutContainer = await renderAstroComponent(Layout, { title: 'Test Title' }, { default: `<p>${slotText}</p>` });
-    const { container } = render(layoutContainer); // Render the container in the test
+    const layoutElement = await renderAstroComponent(Layout, { title: 'Test Title' }, { default: `<p>${slotText}</p>` });
+    const { container } = render(layoutElement); // Render the element in the test
     const mainElement = container.querySelector('main'); // Query within the rendered container
     expect(mainElement).not.toBeNull();
     expect(mainElement?.innerHTML).toContain(`<p>${slotText}</p>`);
@@ -65,8 +65,8 @@ describe('Layout.astro', () => {
 
   it('1.2: Accepts and renders a title prop in <title>', async () => {
     const testTitle = 'My Test Page Title';
-    const layoutContainer = await renderAstroComponent(Layout, { title: testTitle });
-    const { container } = render(layoutContainer); // Render the container in the test
+    const layoutElement = await renderAstroComponent(Layout, { title: testTitle });
+    const { container } = render(layoutElement); // Render the element in the test
     const titleElement = container.querySelector('title'); // Query within the rendered container
     expect(titleElement).not.toBeNull();
     expect(titleElement?.textContent).toBe(testTitle);
