@@ -156,6 +156,18 @@
     * **(Green) Test:** Run tests. Verify the Testimonials section renders correctly with multiple testimonial items.
     * **Rationale:** Build social proof by showcasing positive feedback.
 
+* **Step 5.2: Create About Section Component**
+    * **(Red) Test:** Write a test asserting that an `AboutSection.astro` component:
+        * Renders a `<section>` element.
+        * Accepts and renders a `headline` prop (e.g., "About Us").
+        * Accepts and renders `content` prop (string, potentially Markdown later) within a content area (e.g., `<div>`).
+        * Optionally accepts an `imageUrl` prop and renders an `<img>` if provided.
+    * **(Green) Code:** Create `src/components/AboutSection.astro`. Implement the structure, accept the props, and render the headline, content, and optional image.
+    * **(Refactor) Code:** Add styling classes for layout (e.g., two columns if image is present), text formatting, and image styling.
+    * **Integration:** Import and use the `AboutSection` component in `src/pages/index.astro` (e.g., after Features, before Testimonials), passing sample props.
+    * **(Green) Test:** Run tests. Verify the About section renders correctly with and without an image.
+    * **Rationale:** Provide context about the entity behind the website.
+
 ---
 
 **Next Steps & Considerations:**
