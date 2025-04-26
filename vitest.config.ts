@@ -10,8 +10,11 @@ export default getViteConfig({
     // Optional: Setup file for global configurations or mocks
     // setupFiles: ['./tests/setup.ts'],
     // Explicitly inline testing-library dependencies to avoid import issues
-    deps: {
-      inline: [/@testing-library\//],
+    // Use server.deps.inline instead of the deprecated deps.inline
+    server: {
+      deps: {
+        inline: [/@testing-library\//],
+      },
     },
   },
 });
