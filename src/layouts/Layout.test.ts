@@ -1,5 +1,6 @@
 import { describe, it, expect } from 'vitest';
-import { render, debug } from '@testing-library/dom'; // Ensure render and debug are imported
+// Try importing directly from the dist path
+import { render, debug } from '@testing-library/dom/dist';
 import Layout from './Layout.astro'; // Assuming direct import works, might need adjustments based on setup
 
 // Helper to render Astro components in tests (basic example) with logging and error handling
