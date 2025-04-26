@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { render, screen } from '@testing-library/dom'; // Ensure render is imported
+// Removed testing-library/dom import
 // Import components to test class presence (using mock renderers from other tests)
 import Header from './Header.astro';
 import Footer from './Footer.astro';
@@ -41,35 +41,35 @@ describe('Component Styling Classes', () => {
 
   it('4.2: Header component has base class', () => {
     const headerContainer = createHeaderContainer();
-    const { container } = render(headerContainer); // Render the container in the test
-    expect(container.querySelector('.site-header')).not.toBeNull();
+    // No render call needed, query headerContainer directly
+    expect(headerContainer.querySelector('.site-header')).not.toBeNull();
   });
 
   it('4.2: Footer component has base class', () => {
     const footerContainer = createFooterContainer();
-    const { container } = render(footerContainer); // Render the container in the test
-    expect(container.querySelector('.site-footer')).not.toBeNull();
+    // No render call needed, query footerContainer directly
+    expect(footerContainer.querySelector('.site-footer')).not.toBeNull();
   });
 
   it('4.2: Hero component has base class and button class', () => {
     const heroContainer = createHeroContainer();
-    const { container } = render(heroContainer); // Render the container in the test
-    expect(container.querySelector('.hero-section')).not.toBeNull();
-    expect(container.querySelector('.hero-section .cta-button')).not.toBeNull();
+    // No render call needed, query heroContainer directly
+    expect(heroContainer.querySelector('.hero-section')).not.toBeNull();
+    expect(heroContainer.querySelector('.hero-section .cta-button')).not.toBeNull();
   });
 
    it('4.2: Features component has base class and card class', () => {
     const featuresContainer = createFeaturesContainer();
-    const { container } = render(featuresContainer); // Render the container in the test
-    expect(container.querySelector('.features-section')).not.toBeNull();
-    expect(container.querySelector('.features-section .feature-card')).not.toBeNull();
+    // No render call needed, query featuresContainer directly
+    expect(featuresContainer.querySelector('.features-section')).not.toBeNull();
+    expect(featuresContainer.querySelector('.features-section .feature-card')).not.toBeNull();
   });
 
    it('4.2: CTASection component has base class and button class', () => {
     const ctaContainer = createCTAContainer();
-    const { container } = render(ctaContainer); // Render the container in the test
-    expect(container.querySelector('.cta-section')).not.toBeNull();
-    expect(container.querySelector('.cta-section .cta-button')).not.toBeNull();
+    // No render call needed, query ctaContainer directly
+    expect(ctaContainer.querySelector('.cta-section')).not.toBeNull();
+    expect(ctaContainer.querySelector('.cta-section .cta-button')).not.toBeNull();
   });
 
   // Add more tests here if specific classes are critical for functionality or styling hooks

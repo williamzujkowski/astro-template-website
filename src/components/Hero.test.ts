@@ -1,5 +1,6 @@
 import { describe, it, expect } from 'vitest';
-import { render, screen, within } from '@testing-library/dom'; // Ensure render is imported
+// Removed testing-library/dom import
+import { within } from '@testing-library/dom'; // Keep within for scoped queries
 import Hero from './Hero.astro'; // Direct import might need adjustment
 
 // Mock render helper
@@ -29,17 +30,18 @@ describe('Hero.astro', () => {
 
   it('3.1: Renders <section>, headline, subheadline, and CTA link', async () => {
     const heroContainer = await renderHero(sampleProps);
-    render(heroContainer); // Render the container in the test
-    const section = screen.getByRole('region'); // Basic section check
-    expect(section).not.toBeNull();
+    // No render call needed, query heroContainer directly
+    const section = heroContainer.querySelector('section.hero-section'); // More specific query
+    expect(section, 'Section element should exist').not.toBeNull();
 
-    const heading = screen.getByRole('heading', { level: 1, name: sampleProps.headline });
+    // Use within to scope queries
+    const heading = within(heroContainer).getByRole('heading', { level: 1, name: sampleProps.headline });
     expect(heading).not.toBeNull();
 
-    const subheadline = screen.getByText(sampleProps.subheadline);
+    const subheadline = within(heroContainer).getByText(sampleProps.subheadline);
     expect(subheadline).not.toBeNull();
 
-    const ctaLink = screen.getByRole('link', { name: sampleProps.ctaText });
+    const ctaLink = within(heroContainer).getByRole('link', { name: sampleProps.ctaText });
     expect(ctaLink).not.toBeNull();
     expect(ctaLink.getAttribute('href')).toBe(sampleProps.ctaHref);
   });
@@ -47,10 +49,11 @@ describe('Hero.astro', () => {
   it('3.1: Renders correctly without optional subheadline', async () => {
     const { subheadline, ...propsWithoutSub } = sampleProps;
     const heroContainer = await renderHero(propsWithoutSub);
-    render(heroContainer); // Render the container in the test
+    // No render call needed, query heroContainer directly
 
-    expect(screen.queryByText(sampleProps.subheadline)).toBeNull(); // Subheadline should not be present
-    expect(screen.getByRole('heading', { level: 1, name: sampleProps.headline })).not.toBeNull();
-    expect(screen.getByRole('link', { name: sampleProps.ctaText })).not.toBeNull();
+    // Use within to scope queries
+    expect(within(heroContainer).queryByText(sampleProps.subheadline)).toBeNull(); // Subheadline should not be present
+    expect(within(heroContainer).getByRole('heading', { level: 1, name: sampleProps.headline })).not.toBeNull();
+    expect(within(heroContainer).getByRole('link', { name: sampleProps.ctaText })).not.toBeNull();
   });
 });

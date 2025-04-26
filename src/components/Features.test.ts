@@ -1,5 +1,6 @@
 import { describe, it, expect } from 'vitest';
-import { render, screen, within } from '@testing-library/dom'; // Ensure render is imported
+// Removed testing-library/dom import
+import { within } from '@testing-library/dom'; // Keep within for scoped queries
 import Features from './Features.astro'; // Direct import might need adjustment
 import type { FeatureItem } from '../data/featuresData'; // Import type
 
@@ -34,18 +35,18 @@ describe('Features.astro', () => {
 
   it('3.2: Renders <section> and a block for each feature', async () => {
     const featuresContainer = await renderFeatures({ features: sampleFeatures });
-    render(featuresContainer); // Render the container in the test
-    const section = screen.getByRole('region'); // Basic section check
-    expect(section).not.toBeNull();
+    // No render call needed, query featuresContainer directly
+    const section = featuresContainer.querySelector('section.features-section'); // More specific query
+    expect(section, 'Section element should exist').not.toBeNull();
 
-    const featureCards = section.querySelectorAll('.feature-card');
+    const featureCards = featuresContainer.querySelectorAll('.feature-card');
     expect(featureCards).toHaveLength(sampleFeatures.length);
   });
 
   it('3.2: Renders title and description for each feature', async () => {
     const featuresContainer = await renderFeatures({ features: sampleFeatures });
-    render(featuresContainer); // Render the container in the test
-    const featureCards = screen.getAllByRole('heading', { level: 3 }).map(h => h.closest('.feature-card')); // Get cards via headings
+    // No render call needed, query featuresContainer directly
+    const featureCards = featuresContainer.querySelectorAll('.feature-card'); // Get cards directly
 
     featureCards.forEach((card, index) => {
       expect(card).not.toBeNull();
@@ -59,8 +60,8 @@ describe('Features.astro', () => {
 
   it('3.2: Renders icon if provided', async () => {
      const featuresContainer = await renderFeatures({ features: sampleFeatures });
-     render(featuresContainer); // Render the container in the test
-     const featureCards = screen.getAllByRole('heading', { level: 3 }).map(h => h.closest('.feature-card'));
+     // No render call needed, query featuresContainer directly
+     const featureCards = featuresContainer.querySelectorAll('.feature-card'); // Get cards directly
 
      const card1Icon = within(featureCards[0]!).queryByText(sampleFeatures[0].icon!);
      const card2Icon = within(featureCards[1]!).queryByText('🚀'); // Check absence by querying for *any* icon text

@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { render, screen } from '@testing-library/dom'; // Ensure render is imported
+// Removed testing-library/dom import
 import Footer from './Footer.astro'; // Direct import might need adjustment
 
 // Mock render helper (Removed for simplification)
@@ -11,9 +11,9 @@ describe('Footer.astro', () => {
     const simpleFooterHtml = `<footer role="contentinfo" class="site-footer"><p>&copy; Test</p></footer>`;
     const container = document.createElement('div');
     container.innerHTML = simpleFooterHtml;
-    render(container); // Render the container directly in the test
+    // No render call needed, query container directly
 
-    const footer = screen.getByRole('contentinfo'); // Checks for <footer role="contentinfo">
+    const footer = container.querySelector('footer[role="contentinfo"]'); // Query the container
     expect(footer).not.toBeNull();
     expect(footer.textContent).toContain('© Test');
     // expect(footer.textContent).toContain('My Astro Site'); // Temporarily commented out

@@ -1,5 +1,6 @@
 import { describe, it, expect } from 'vitest';
-import { render, screen, within } from '@testing-library/dom'; // Ensure render is imported
+// Removed testing-library/dom import
+import { within } from '@testing-library/dom'; // Keep within for scoped queries
 import CTASection from './CTASection.astro'; // Direct import might need adjustment
 
 // Mock render helper
@@ -26,14 +27,15 @@ describe('CTASection.astro', () => {
 
   it('3.3: Renders <section>, headline, and CTA link', async () => {
     const ctaContainer = await renderCTASection(sampleProps);
-    render(ctaContainer); // Render the container in the test
-    const section = screen.getByRole('region'); // Basic section check
-    expect(section).not.toBeNull();
+    // No render call needed, query ctaContainer directly
+    const section = ctaContainer.querySelector('section.cta-section'); // More specific query
+    expect(section, 'Section element should exist').not.toBeNull();
 
-    const heading = screen.getByRole('heading', { level: 2, name: sampleProps.headline });
+    // Use within to scope queries to the container
+    const heading = within(ctaContainer).getByRole('heading', { level: 2, name: sampleProps.headline });
     expect(heading).not.toBeNull();
 
-    const ctaLink = screen.getByRole('link', { name: sampleProps.ctaText });
+    const ctaLink = within(ctaContainer).getByRole('link', { name: sampleProps.ctaText });
     expect(ctaLink).not.toBeNull();
     expect(ctaLink.getAttribute('href')).toBe(sampleProps.ctaHref);
   });
