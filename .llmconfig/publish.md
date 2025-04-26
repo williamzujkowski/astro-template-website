@@ -123,59 +123,59 @@ This checklist guides the creation of the `.github/workflows/deploy.yml` file.
 ## Phase 1: Basic Workflow Setup & Build
 
 ### 1.1: Workflow File and Trigger
-- [ ] Create `.github/workflows/deploy.yml`.
-- [ ] Add `name: Deploy Astro Site to Pages`.
-- [ ] Add trigger `on: push: branches: ["main"]`.
-- [ ] Add `workflow_dispatch:` trigger for manual runs.
-- [ ] Define a `build` job running on `ubuntu-latest`.
-- [ ] Add `actions/checkout@v4` step to the `build` job.
-- [ ] **Verify:** Workflow runs on push/manual trigger; checkout succeeds.
+- [x] Create `.github/workflows/deploy.yml`.
+- [x] Add `name: Deploy Astro Site to Pages`.
+- [x] Add trigger `on: push: branches: ["main"]`.
+- [x] Add `workflow_dispatch:` trigger for manual runs.
+- [x] Define a `build` job running on `ubuntu-latest`.
+- [x] Add `actions/checkout@v4` step to the `build` job.
+- [x] **Verify:** Workflow runs on push/manual trigger; checkout succeeds.
 
 ### 1.2: Setup Node.js Environment
-- [ ] Add `actions/setup-node@v4` step after checkout.
-- [ ] Specify the correct `node-version` (e.g., '20').
-- [ ] Enable npm caching via `cache: 'npm'` within the setup-node action.
-- [ ] **Verify:** Step succeeds; correct Node version logged; cache potentially used on 2nd run.
+- [x] Add `actions/setup-node@v4` step after checkout.
+- [x] Specify the correct `node-version` (e.g., '20').
+- [x] Enable npm caching via `cache: 'npm'` within the setup-node action.
+- [x] **Verify:** Step succeeds; correct Node version logged; cache potentially used on 2nd run.
 
 ### 1.3: Install Dependencies
-- [ ] Add step `name: Install Dependencies` after Node.js setup.
-- [ ] Use command `run: npm ci`.
-- [ ] **Verify:** Step succeeds; dependencies installed; cache hit speeds up subsequent runs.
+- [x] Add step `name: Install Dependencies` after Node.js setup.
+- [x] Use command `run: npm ci`.
+- [x] **Verify:** Step succeeds; dependencies installed; cache hit speeds up subsequent runs.
 
 ### 1.4: Build the Astro Site
-- [ ] Add step `name: Build Astro Site` after dependency install.
-- [ ] Use command `run: npm run build`.
-- [ ] **Verify:** Step succeeds; no build errors logged.
+- [x] Add step `name: Build Astro Site` after dependency install.
+- [x] Use command `run: npm run build`.
+- [x] **Verify:** Step succeeds; no build errors logged.
 
 ## Phase 2: GitHub Pages Configuration & Deployment
 
 ### 2.1: Configure GitHub Pages Artifact
-- [ ] Add step `name: Setup Pages` using `actions/configure-pages@v4` after build.
-- [ ] Add step `name: Upload artifact` using `actions/upload-pages-artifact@v3` after Setup Pages.
-- [ ] Configure `upload-pages-artifact` with `path: './dist'`.
-- [ ] **Verify:** Steps succeed; "github-pages" artifact appears in run summary.
+- [x] Add step `name: Setup Pages` using `actions/configure-pages@v4` after build.
+- [x] Add step `name: Upload artifact` using `actions/upload-pages-artifact@v3` after Setup Pages.
+- [x] Configure `upload-pages-artifact` with `path: './dist'`.
+- [x] **Verify:** Steps succeed; "github-pages" artifact appears in run summary.
 
 ### 2.2: Add Deployment Job & Permissions
-- [ ] Add top-level `permissions` block (`contents: read`, `pages: write`, `id-token: write`).
-- [ ] Define a new `deploy` job running on `ubuntu-latest`.
-- [ ] Add `needs: build` to the `deploy` job.
-- [ ] Define `environment: name: github-pages` and `url: ${{ steps.deployment.outputs.page_url }}` for the `deploy` job.
-- [ ] Add step `name: Deploy to GitHub Pages` to the `deploy` job using `actions/deploy-pages@v4`. Assign `id: deployment`.
-- [ ] **Verify:** `build` job completes, `deploy` job runs & succeeds; **visit deployed URL and confirm site loads correctly with assets**.
+- [x] Add top-level `permissions` block (`contents: read`, `pages: write`, `id-token: write`).
+- [x] Define a new `deploy` job running on `ubuntu-latest`.
+- [x] Add `needs: build` to the `deploy` job.
+- [x] Define `environment: name: github-pages` and `url: ${{ steps.deployment.outputs.page_url }}` for the `deploy` job.
+- [x] Add step `name: Deploy to GitHub Pages` to the `deploy` job using `actions/deploy-pages@v4`. Assign `id: deployment`.
+- [x] **Verify:** `build` job completes, `deploy` job runs & succeeds; **visit deployed URL and confirm site loads correctly with assets**.
 
 ## Phase 3: Optimization & Refinement
 
 ### 3.1: Add Concurrency Control
-- [ ] Add top-level `concurrency:` block.
-- [ ] Set `group: "pages"`.
-- [ ] Set `cancel-in-progress: true`.
-- [ ] **Verify:** Rapid pushes result in older workflow runs being cancelled.
+- [x] Add top-level `concurrency:` block.
+- [x] Set `group: "pages"`.
+- [x] Set `cancel-in-progress: true`.
+- [x] **Verify:** Rapid pushes result in older workflow runs being cancelled.
 
 ### 3.2: Review and Finalize
-- [ ] Review the entire `deploy.yml` file for clarity and correctness.
-- [ ] Ensure comments explain non-obvious parts.
-- [ ] Confirm Node.js version matches project requirements.
-- [ ] **Verify:** Final workflow run executes successfully, deployment looks correct.
+- [x] Review the entire `deploy.yml` file for clarity and correctness.
+- [x] Ensure comments explain non-obvious parts.
+- [x] Confirm Node.js version matches project requirements.
+- [x] **Verify:** Final workflow run executes successfully, deployment looks correct.
 ```
 
 This plan provides the LLM with small, verifiable steps to construct the GitHub Actions workflow, mirroring the TDD approach used for the website code itself.
