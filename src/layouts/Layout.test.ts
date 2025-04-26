@@ -4,16 +4,18 @@ import Layout from './Layout.astro'; // Assuming direct import works, might need
 
 // Helper to render Astro components in tests (basic example) with logging and error handling
 // More robust solutions might involve @astrojs/testing-library if available/needed
-async function renderAstroComponent(component: any, props: Record<string, any>, slots: Record<string, string> = {}) {
-  // This is a simplified render function. Real-world testing might need
-  // a more sophisticated setup to handle Astro's rendering lifecycle.
-  // We'll simulate the output structure for basic DOM checks.
+async function renderAstroComponent(component: any, props: Record<string, any>, slots: Record<string, string> = {}): Promise<HTMLElement> {
+  console.log('[renderAstroComponent] Rendering component with props:', props, 'and slots:', slots);
+  try {
+    // This is a simplified render function. Real-world testing might need
+    // a more sophisticated setup to handle Astro's rendering lifecycle.
+    // We'll simulate the output structure for basic DOM checks.
 
-  // Astro components don't export a function directly callable like this.
-  // We need to rely on testing the built output or using specific Astro testing tools.
-  // For now, we'll mock the expected structure based on the component's code.
+    // Astro components don't export a function directly callable like this.
+    // We need to rely on testing the built output or using specific Astro testing tools.
+    // For now, we'll mock the expected structure based on the component's code.
 
-  // Mocking the structure based on Layout.astro
+    // Mocking the structure based on Layout.astro
   const title = props.title || 'Default Title';
   const slotContent = slots.default || '';
 
