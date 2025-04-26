@@ -22,7 +22,7 @@ async function renderFeatures(props: { features: FeatureItem[] }) {
   `;
   const container = document.createElement('div');
   container.innerHTML = html;
-  return render(container); // Pass the container element to render
+  return container; // Return the container element directly
 }
 
 describe('Features.astro', () => {
@@ -33,7 +33,8 @@ describe('Features.astro', () => {
   ];
 
   it('3.2: Renders <section> and a block for each feature', async () => {
-    await renderFeatures({ features: sampleFeatures });
+    const featuresContainer = await renderFeatures({ features: sampleFeatures });
+    render(featuresContainer); // Render the container in the test
     const section = screen.getByRole('region'); // Basic section check
     expect(section).not.toBeNull();
 
@@ -42,7 +43,8 @@ describe('Features.astro', () => {
   });
 
   it('3.2: Renders title and description for each feature', async () => {
-    await renderFeatures({ features: sampleFeatures });
+    const featuresContainer = await renderFeatures({ features: sampleFeatures });
+    render(featuresContainer); // Render the container in the test
     const featureCards = screen.getAllByRole('heading', { level: 3 }).map(h => h.closest('.feature-card')); // Get cards via headings
 
     featureCards.forEach((card, index) => {
@@ -56,7 +58,8 @@ describe('Features.astro', () => {
   });
 
   it('3.2: Renders icon if provided', async () => {
-     await renderFeatures({ features: sampleFeatures });
+     const featuresContainer = await renderFeatures({ features: sampleFeatures });
+     render(featuresContainer); // Render the container in the test
      const featureCards = screen.getAllByRole('heading', { level: 3 }).map(h => h.closest('.feature-card'));
 
      const card1Icon = within(featureCards[0]!).queryByText(sampleFeatures[0].icon!);

@@ -28,7 +28,7 @@ async function renderHeader(props: { siteTitle: string; navItems: NavItem[]; cur
   `;
   const container = document.createElement('div');
   container.innerHTML = html;
-  return render(container); // Pass the container element to render
+  return container; // Return the container element directly
 }
 
 describe('Header.astro', () => {
@@ -39,21 +39,24 @@ describe('Header.astro', () => {
   const sampleSiteTitle = 'Test Site';
 
   it('2.1: Renders <header>, title placeholder area, and <nav>', async () => {
-    await renderHeader({ siteTitle: sampleSiteTitle, navItems: [], currentPath: '/' });
+    const headerContainer = await renderHeader({ siteTitle: sampleSiteTitle, navItems: [], currentPath: '/' });
+    render(headerContainer); // Render the container in the test
     expect(screen.getByRole('banner')).not.toBeNull(); // Checks for <header role="banner">
     expect(screen.getByRole('navigation')).not.toBeNull(); // Checks for <nav role="navigation">
     expect(screen.getByText(sampleSiteTitle)).not.toBeNull(); // Checks for site title presence
   });
 
   it('2.2: Accepts and displays siteTitle prop as a link to /', async () => {
-    await renderHeader({ siteTitle: sampleSiteTitle, navItems: [], currentPath: '/' });
+    const headerContainer = await renderHeader({ siteTitle: sampleSiteTitle, navItems: [], currentPath: '/' });
+    render(headerContainer); // Render the container in the test
     const titleLink = screen.getByRole('link', { name: sampleSiteTitle });
     expect(titleLink).not.toBeNull();
     expect(titleLink.getAttribute('href')).toBe('/');
   });
 
   it('2.3: Accepts navItems and renders ul > li > a structure', async () => {
-    await renderHeader({ siteTitle: sampleSiteTitle, navItems: sampleNavItems, currentPath: '/' });
+    const headerContainer = await renderHeader({ siteTitle: sampleSiteTitle, navItems: sampleNavItems, currentPath: '/' });
+    render(headerContainer); // Render the container in the test
     const nav = screen.getByRole('navigation');
     const list = within(nav).getByRole('list');
     expect(list).not.toBeNull();
@@ -70,7 +73,8 @@ describe('Header.astro', () => {
 
    it('Accessibility: Applies aria-current="page" to the active link', async () => {
     const currentPath = '/about';
-    await renderHeader({ siteTitle: sampleSiteTitle, navItems: sampleNavItems, currentPath: currentPath });
+    const headerContainer = await renderHeader({ siteTitle: sampleSiteTitle, navItems: sampleNavItems, currentPath: currentPath });
+    render(headerContainer); // Render the container in the test
 
     const activeLink = screen.getByRole('link', { name: 'About' });
     const inactiveLink = screen.getByRole('link', { name: 'Home' });

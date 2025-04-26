@@ -17,12 +17,13 @@ async function renderFooter(props: { startYear?: number }) {
   `;
   const container = document.createElement('div');
   container.innerHTML = html;
-  return render(container); // Pass the container element to render
+  return container; // Return the container element directly
 }
 
 describe('Footer.astro', () => {
   it('2.4: Renders <footer> with copyright placeholder structure', async () => {
-    await renderFooter({});
+    const footerContainer = await renderFooter({});
+    render(footerContainer); // Render the container in the test
     const footer = screen.getByRole('contentinfo'); // Checks for <footer role="contentinfo">
     expect(footer).not.toBeNull();
     expect(footer.textContent).toContain('©');
@@ -30,7 +31,8 @@ describe('Footer.astro', () => {
   });
 
   it('2.5: Displays copyright with the current year by default', async () => {
-    await renderFooter({});
+    const footerContainer = await renderFooter({});
+    render(footerContainer); // Render the container in the test
     const currentYear = new Date().getFullYear();
     expect(screen.getByRole('contentinfo').textContent).toContain(`© ${currentYear}`);
   });
@@ -38,13 +40,15 @@ describe('Footer.astro', () => {
   it('2.5: Displays copyright with a startYear range if provided and valid', async () => {
     const startYear = 2020;
     const currentYear = new Date().getFullYear();
-    await renderFooter({ startYear: startYear });
+    const footerContainer = await renderFooter({ startYear: startYear });
+    render(footerContainer); // Render the container in the test
     expect(screen.getByRole('contentinfo').textContent).toContain(`© ${startYear}-${currentYear}`);
   });
 
    it('2.5: Displays only current year if startYear is same as current year', async () => {
     const currentYear = new Date().getFullYear();
-    await renderFooter({ startYear: currentYear });
+    const footerContainer = await renderFooter({ startYear: currentYear });
+    render(footerContainer); // Render the container in the test
     expect(screen.getByRole('contentinfo').textContent).toContain(`© ${currentYear}`);
     expect(screen.getByRole('contentinfo').textContent).not.toContain(`-${currentYear}`);
   });
@@ -53,7 +57,8 @@ describe('Footer.astro', () => {
     const futureYear = new Date().getFullYear() + 1;
     // Mock console.warn if needed to assert the warning
     // const warnSpy = vi.spyOn(console, 'warn');
-    await renderFooter({ startYear: futureYear });
+    const footerContainer = await renderFooter({ startYear: futureYear });
+    render(footerContainer); // Render the container in the test
     const currentYear = new Date().getFullYear();
     expect(screen.getByRole('contentinfo').textContent).toContain(`© ${currentYear}`);
     // expect(warnSpy).toHaveBeenCalledWith(expect.stringContaining(`${futureYear}`));

@@ -14,7 +14,7 @@ async function renderCTASection(props: { headline: string; ctaText: string; ctaH
   `;
   const container = document.createElement('div');
   container.innerHTML = html;
-  return render(container); // Pass the container element to render
+  return container; // Return the container element directly
 }
 
 describe('CTASection.astro', () => {
@@ -25,7 +25,8 @@ describe('CTASection.astro', () => {
   };
 
   it('3.3: Renders <section>, headline, and CTA link', async () => {
-    await renderCTASection(sampleProps);
+    const ctaContainer = await renderCTASection(sampleProps);
+    render(ctaContainer); // Render the container in the test
     const section = screen.getByRole('region'); // Basic section check
     expect(section).not.toBeNull();
 

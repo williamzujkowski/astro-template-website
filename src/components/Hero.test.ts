@@ -16,7 +16,7 @@ async function renderHero(props: { headline: string; subheadline?: string; ctaTe
   `;
   const container = document.createElement('div');
   container.innerHTML = html;
-  return render(container); // Pass the container element to render
+  return container; // Return the container element directly
 }
 
 describe('Hero.astro', () => {
@@ -28,7 +28,8 @@ describe('Hero.astro', () => {
   };
 
   it('3.1: Renders <section>, headline, subheadline, and CTA link', async () => {
-    await renderHero(sampleProps);
+    const heroContainer = await renderHero(sampleProps);
+    render(heroContainer); // Render the container in the test
     const section = screen.getByRole('region'); // Basic section check
     expect(section).not.toBeNull();
 
@@ -45,7 +46,8 @@ describe('Hero.astro', () => {
 
   it('3.1: Renders correctly without optional subheadline', async () => {
     const { subheadline, ...propsWithoutSub } = sampleProps;
-    await renderHero(propsWithoutSub);
+    const heroContainer = await renderHero(propsWithoutSub);
+    render(heroContainer); // Render the container in the test
 
     expect(screen.queryByText(sampleProps.subheadline)).toBeNull(); // Subheadline should not be present
     expect(screen.getByRole('heading', { level: 1, name: sampleProps.headline })).not.toBeNull();
